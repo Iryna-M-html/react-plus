@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import toast, { Toaster } from "react-hot-toast";
-//import styles from "./App.module.css";
+import styles from "./App.module.css";
+import { Movie } from "../../types/movie";
+import { fetchMovies } from "../../services/movieService";
+import MovieGrid from "../MovieGrid/MovieGrid";
 
 interface Movie {
   id: number;
@@ -20,14 +23,9 @@ const App: React.FC = () => {
   useEffect(() => {
     if (!query) return;
 
-    async function fetchMovies() {
+    async function loadMovies() {
       try {
-        const API_KEY = "920511640a07f577c641fe92d3257a34";
-        const response = await fetch(
-          `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`
-        );
-        const data = await response.json();
-
+        const data = await fetchMovies(query);
         if (!data.results || data.results.length === 0) {
           toast.error("No movies found for your request.");
         } else {
@@ -38,19 +36,14 @@ const App: React.FC = () => {
       }
     }
 
-    fetchMovies();
+    loadMovies();
   }, [query]);
 
   return (
     <div>
       <SearchBar onSubmit={handleSearch} />
       <Toaster position="top-right" />
-
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
-        ))}
-      </ul>
+      <MovieGrid movies={movies} onSelect={(movie) => console.log(movie)} />
     </div>
   );
 };
