@@ -1,5 +1,5 @@
 import React from "react";
-import { Movie } from "../../types/movie";
+import type { Movie } from "../../types/movie";
 import css from "./MovieGrid.module.css";
 
 interface MovieGridProps {
@@ -9,7 +9,7 @@ interface MovieGridProps {
 
 const MovieGrid: React.FC<MovieGridProps> = ({ movies, onSelect }) => {
   if (!movies || movies.length === 0) {
-    return null; // 🟢 галерея рендериться лише коли є фільми
+    return null;
   }
 
   return (

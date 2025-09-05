@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from "axios";
-import { MoviesResponse } from "../types/movie";
+import axios, { type AxiosResponse } from "axios";
+import type { MoviesResponse } from "../types/movie";
 
 const API_KEY = "920511640a07f577c641fe92d3257a34";
 const BASE_URL = "https://api.themoviedb.org/3";
