@@ -29,8 +29,8 @@
   object-fit: cover;
   object-position: center;
   display: block;
+  border-radius: 4px;
 }
-
 .title {
   position: absolute;
   bottom: 0;
