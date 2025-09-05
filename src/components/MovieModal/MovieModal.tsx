@@ -11,7 +11,6 @@ interface MovieModalProps {
 const modalRoot = document.getElementById("modal-root") as HTMLElement;
 
 const MovieModal: React.FC<MovieModalProps> = ({ movie, onClose }) => {
-  // Закриття по ESC
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -20,12 +19,11 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, onClose }) => {
     };
     window.addEventListener("keydown", handleEsc);
 
-    // Заборонити скрол тіла
     document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = ""; // повернути скрол
+      document.body.style.overflow = "";
     };
   }, [onClose]);
 

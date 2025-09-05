@@ -27,7 +27,8 @@ const MovieGrid: React.FC<MovieGridProps> = ({ movies, onSelect }) => {
               src={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : "https://via.placeholder.com/500x750?text=No+Image"
+                  : //: "https://via.placeholder.com/500x750?text=No+Image"
+                    "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
               }
               alt={movie.title}
               loading="lazy"
