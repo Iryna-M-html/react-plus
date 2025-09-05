@@ -6,7 +6,7 @@ import { Movie } from "../../types/movie";
 import { fetchMovies } from "../../services/movieService";
 import MovieGrid from "../MovieGrid/MovieGrid";
 import Loader from "../Loader/Loader";
-
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 // interface Movie {
 //   id: number;
 //   title: string;
@@ -17,7 +17,7 @@ const App: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [error, setError] = useState<boolean>(false);
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
     setMovies([]);
@@ -28,6 +28,7 @@ const App: React.FC = () => {
 
     async function loadMovies() {
       try {
+        setError(false);
         setLoading(true);
         const data = await fetchMovies(query);
         if (!data.results || data.results.length === 0) {
@@ -36,6 +37,7 @@ const App: React.FC = () => {
           setMovies(data.results);
         }
       } catch (error) {
+        setError(true);
         toast.error("Something went wrong. Please try again.");
       } finally {
         setLoading(false);
@@ -49,9 +51,10 @@ const App: React.FC = () => {
     <div>
       <SearchBar onSubmit={handleSearch} />
       <Toaster position="top-right" />
-      {loading ? (
-        <Loader />
-      ) : (
+
+      {loading && <Loader />}
+      {error && <ErrorMessage />}
+      {!loading && !error && (
         <MovieGrid movies={movies} onSelect={(movie) => console.log(movie)} />
       )}
     </div>
