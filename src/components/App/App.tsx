@@ -5,15 +5,18 @@ import styles from "./App.module.css";
 import { Movie } from "../../types/movie";
 import { fetchMovies } from "../../services/movieService";
 import MovieGrid from "../MovieGrid/MovieGrid";
+import Loader from "../Loader/Loader";
 
-interface Movie {
-  id: number;
-  title: string;
-}
+// interface Movie {
+//   id: number;
+//   title: string;
+// }
 
 const App: React.FC = () => {
   const [query, setQuery] = useState<string>("");
   const [movies, setMovies] = useState<Movie[]>([]);
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
@@ -25,6 +28,7 @@ const App: React.FC = () => {
 
     async function loadMovies() {
       try {
+        setLoading(true);
         const data = await fetchMovies(query);
         if (!data.results || data.results.length === 0) {
           toast.error("No movies found for your request.");
@@ -33,6 +37,8 @@ const App: React.FC = () => {
         }
       } catch (error) {
         toast.error("Something went wrong. Please try again.");
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -43,7 +49,11 @@ const App: React.FC = () => {
     <div>
       <SearchBar onSubmit={handleSearch} />
       <Toaster position="top-right" />
-      <MovieGrid movies={movies} onSelect={(movie) => console.log(movie)} />
+      {loading ? (
+        <Loader />
+      ) : (
+        <MovieGrid movies={movies} onSelect={(movie) => console.log(movie)} />
+      )}
     </div>
   );
 };
