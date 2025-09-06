@@ -9,11 +9,6 @@ import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import MovieModal from "../MovieModal/MovieModal";
 
-// interface Movie {
-//   id: number;
-//   title: string;
-// }
-
 const App: React.FC = () => {
   const [query, setQuery] = useState<string>("");
   const [movies, setMovies] = useState<Movie[]>([]);
