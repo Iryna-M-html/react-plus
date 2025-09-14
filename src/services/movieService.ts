@@ -26,3 +26,4 @@ export async function fetchMovies(
   });
   return response.data;
 }
+export default fetchMovies;
