@@ -17,9 +17,12 @@ const api = axios.create({
   },
 });
 
-export async function fetchMovies(query: string): Promise<MoviesResponse> {
+export async function fetchMovies(
+  query: string,
+  page: number = 1
+): Promise<MoviesResponse> {
   const response = await api.get<MoviesResponse>("/search/movie", {
-    params: { query },
+    params: { query, page },
   });
   return response.data;
 }
