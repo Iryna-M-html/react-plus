@@ -5,6 +5,7 @@ import UserMenu from "../UserMenu/UserMenu";
 import { useState } from "react";
 import ClickCounter from "../ClickCounter/ClickCounter";
 import ClickCounterall from "../../ClickCounterall";
+import OrderForm from "../../components/OrderForm/OrderForm";
 interface Values {
   x: number;
   y: number;
@@ -172,7 +173,6 @@ export default function App() {
       <button onClick={toggleMessage}>
         {isOpen ? "Hide message" : "Show message"}
       </button>
-
       {isOpen && <p>🎉 Surprise! You toggled me.</p>}
       <div>
         <p>
@@ -181,6 +181,7 @@ export default function App() {
         <button onClick={updateX}>Update x</button>
         <button onClick={updateY}>Update y</button>
       </div>
+      <OrderForm />
     </>
   );
 }
