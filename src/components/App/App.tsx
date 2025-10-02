@@ -1,28 +1,121 @@
-//import css from "./App.module.css";
-import Product from "../../components/Product/Product";
-import Mailbox from "../Mailbox/Mailbox";
+import Alert from "../Alert/Alert";
+import css from "./App.module.css";
+interface KindFriends {
+  name: string;
+  email: string;
+  eyeColor: string;
+  friends: [string, string?, string?];
+  isActive: boolean;
+  balance: number;
+  skills: [string, string?, string?, string?, string?];
+  gender: string;
+  age: number;
+}
+const kindFriends: KindFriends[] = [
+  {
+    name: "Moore Hensley",
+    email: "moorehensley@indexia.com",
+    eyeColor: "blue",
+    friends: ["Sharron Pace"],
+    isActive: false,
+    balance: 2811,
+    skills: ["ipsum", "lorem"],
+    gender: "male",
+    age: 37,
+  },
+  {
+    name: "Sharlene Bush",
+    email: "sharlenebush@tubesys.com",
+    eyeColor: "blue",
+    friends: ["Briana Decker", "Sharron Pace"],
+    isActive: true,
+    balance: 3821,
+    skills: ["tempor", "mollit", "commodo", "veniam", "laborum"],
+    gender: "female",
+    age: 34,
+  },
+  {
+    name: "Ross Vazquez",
+    email: "rossvazquez@xinware.com",
+    eyeColor: "green",
+    friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
+    isActive: false,
+    balance: 3793,
+    skills: ["nulla", "anim", "proident", "ipsum", "elit"],
+    gender: "male",
+    age: 24,
+  },
+  {
+    name: "Elma Head",
+    email: "elmahead@omatom.com",
+    eyeColor: "green",
+    friends: ["Goldie Gentry", "Aisha Tran"],
+    isActive: true,
+    balance: 2278,
+    skills: ["adipisicing", "irure", "velit"],
+    gender: "female",
+    age: 21,
+  },
+  {
+    name: "Carey Barr",
+    email: "careybarr@nurali.com",
+    eyeColor: "blue",
+    friends: ["Jordan Sampson", "Eddie Strong"],
+    isActive: true,
+    balance: 3951,
+    skills: ["ex", "culpa", "nostrud"],
+    gender: "male",
+    age: 27,
+  },
+  {
+    name: "Blackburn Dotson",
+    email: "blackburndotson@furnigeer.com",
+    eyeColor: "brown",
+    friends: ["Jacklyn Lucas", "Linda Chapman"],
+    isActive: false,
+    balance: 1498,
+    skills: ["non", "amet", "ipsum"],
+    gender: "male",
+    age: 38,
+  },
+  {
+    name: "Sheree Anthony",
+    email: "shereeanthony@kog.com",
+    eyeColor: "brown",
+    friends: ["Goldie Gentry", "Briana Decker"],
+    isActive: true,
+    balance: 2764,
+    skills: ["lorem", "veniam", "culpa"],
+    gender: "female",
+    age: 39,
+  },
+];
+
+console.log(kindFriends);
 
 export default function App() {
-  const username = "Alice";
-  const messages = ["You have {messages.length} unread messages"];
   return (
     <>
-      <h1>Best selling</h1>
-      <Product
-        name="Tacos With Lime"
-        imgUrl="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?w=640"
-        price={10.99}
-      />
-      <Product
-        name="Fries and Burger"
-        imgUrl="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?w=640"
-        price={14.29}
-      />
-
-      <Mailbox username={username} messages={messages} />
+      <h1>Friends</h1>
+      <Alert />
+      <ul className={css.app}>
+        {kindFriends.map((kindFriend, index) => (
+          <li style={{ padding: "12px 16px", color: "red" }} key={index}>
+            {kindFriend.name}
+            <button
+              style={{ width: "20 px", height: "20 px", background: "blue" }}
+            />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
+
+//import css from "./App.module.css";
+// import Product from "../../components/Product/Product";
+// import Mailbox from "../Mailbox/Mailbox";
+
 // import { useEffect, useState } from "react";
 // import { Toaster } from "react-hot-toast";
 // import toast from "react-hot-toast";

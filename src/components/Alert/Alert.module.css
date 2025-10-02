@@ -1,0 +1,7 @@
+/* src/components/Alert.css */
+.alert {
+  padding: 12px 16px;
+  background-color: gray;
+  border-radius: 4px;
+  color: black;
+}
