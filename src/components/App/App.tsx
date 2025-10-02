@@ -5,7 +5,10 @@ import UserMenu from "../UserMenu/UserMenu";
 import { useState } from "react";
 import ClickCounter from "../ClickCounter/ClickCounter";
 import ClickCounterall from "../../ClickCounterall";
-
+interface Values {
+  x: number;
+  y: number;
+}
 interface KindFriends {
   name: string;
   email: string;
@@ -102,6 +105,22 @@ console.log(kindFriends);
 export default function App() {
   const [clicksall, setclicksall] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [values, setValues] = useState<Values>({ x: 0, y: 0 });
+
+  const updateX = () => {
+    setValues({
+      ...values,
+      x: values.x + 1,
+    });
+  };
+
+  const updateY = () => {
+    setValues({
+      ...values,
+      y: values.y + 1,
+    });
+  };
+
   // const [clicks, setClicks] = useState<number>(0);
   // Для складніших даних, потрібно вказати тип явно:
 
@@ -155,6 +174,13 @@ export default function App() {
       </button>
 
       {isOpen && <p>🎉 Surprise! You toggled me.</p>}
+      <div>
+        <p>
+          x: {values.x}, y: {values.y}
+        </p>
+        <button onClick={updateX}>Update x</button>
+        <button onClick={updateY}>Update y</button>
+      </div>
     </>
   );
 }
