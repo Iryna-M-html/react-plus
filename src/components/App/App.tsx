@@ -2,6 +2,9 @@ import Alert from "../Alert/Alert";
 import css from "./App.module.css";
 import Button from "../Button/Button";
 import UserMenu from "../UserMenu/UserMenu";
+import { useState } from "react";
+import ClickCounter from "../ClickCounter/ClickCounter";
+import ClickCounterall from "../../ClickCounterall";
 
 interface KindFriends {
   name: string;
@@ -97,6 +100,31 @@ const kindFriends: KindFriends[] = [
 console.log(kindFriends);
 
 export default function App() {
+  const [clicksall, setclicksall] = useState<number>(0);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const [clicks, setClicks] = useState<number>(0);
+  // Для складніших даних, потрібно вказати тип явно:
+
+  // interface User {
+  //   id: number;
+  //   name: string;
+  // }
+
+  // Стан який зберігає масив об'єктів користувача
+  // const [items, setItems] = useState<User[]>([]);
+
+  // Стан, який може бути або об'єктом, або null
+  // const [user, setUser] = useState<User | null>(null);
+  const handleClick = () => {
+    setclicksall(clicksall + 1);
+  };
+  const toggleMessage = () => {
+    setIsOpen(!isOpen);
+  };
+  // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  //   console.log("Clicked!", event);
+  //   console.log("Target:", event.target); // сам <button>
+  // };
   return (
     <>
       <h1>Friends</h1>
@@ -116,94 +144,17 @@ export default function App() {
       <Button variant="primary" text="Login" />
       <Button variant="secondary" text="Follow" />
       <UserMenu name="Alex" />
+      <ClickCounter />
+      <ClickCounter />
+      <ClickCounterall value={clicksall} onUpdate={handleClick} />
+      <ClickCounterall value={clicksall} onUpdate={handleClick} />
+      {/* <button onClick={handleClick}>Current: {clicks}</button>; */}
+      {/* <button onClick={handleClick}>Click me!</button> */}
+      <button onClick={toggleMessage}>
+        {isOpen ? "Hide message" : "Show message"}
+      </button>
+
+      {isOpen && <p>🎉 Surprise! You toggled me.</p>}
     </>
   );
 }
-
-//import css from "./App.module.css";
-// import Product from "../../components/Product/Product";
-// import Mailbox from "../Mailbox/Mailbox";
-
-// import { useEffect, useState } from "react";
-// import { Toaster } from "react-hot-toast";
-// import toast from "react-hot-toast";
-// import { keepPreviousData, useQuery } from "@tanstack/react-query";
-
-// import fetchMovies from "../../services/movieService";
-// import type { Movie } from "../../types/movie";
-
-// import ErrorMessage from "../ErrorMessage/ErrorMessage";
-// import Loader from "../Loader/Loader";
-// import MovieGrid from "../MovieGrid/MovieGrid";
-// import MovieModal from "../MovieModal/MovieModal";
-// import SearchBar from "../SearchBar/SearchBar";
-// import ReactPaginate from "react-paginate";
-
-// function App() {
-//   const [search, setSearch] = useState<string>("");
-//   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-//   const [page, setPage] = useState(0);
-
-//   const { data, isLoading, isError, isSuccess } = useQuery({
-//     queryKey: ["movies", search, page],
-//     queryFn: () => fetchMovies(search, page + 1),
-//     enabled: Boolean(search),
-//     placeholderData: keepPreviousData,
-//   });
-
-//   const handleSearchBar = (query: string) => {
-//     setSearch(query.trim());
-//     setPage(0);
-//   };
-
-//   useEffect(() => {
-//     if (data?.results.length === 0) {
-//       toast.error("No movies found for your request.");
-//     }
-//   }, [data]);
-
-//   const openModal = () => setIsModalOpen(true);
-//   const closeModal = () => {
-//     setIsModalOpen(false);
-//     setSelectedMovie(null);
-//   };
-
-//   const handleSelect = (movie: Movie) => {
-//     setSelectedMovie(movie);
-//     openModal();
-//   };
-
-//   return (
-//     <div className={css.app}>
-//       {isModalOpen && selectedMovie && (
-//         <MovieModal movie={selectedMovie} onClose={closeModal} />
-//       )}
-
-//       <Toaster />
-//       <SearchBar onSubmit={handleSearchBar} />
-
-//       {isLoading && <Loader />}
-//       {!isLoading && isError && <ErrorMessage />}
-
-//       {isSuccess && data.total_pages > 1 && (
-//         <ReactPaginate
-//           pageCount={data?.total_pages ?? 0}
-//           pageRangeDisplayed={5}
-//           marginPagesDisplayed={1}
-//           onPageChange={({ selected }) => setPage(selected)}
-//           forcePage={page}
-//           containerClassName={css.pagination}
-//           activeClassName={css.active}
-//           nextLabel="→"
-//           previousLabel="←"
-//         />
-//       )}
-//       {!isLoading && !isError && (data?.results?.length ?? 0) > 0 && (
-//         <MovieGrid movies={data!.results} onSelect={handleSelect} />
-//       )}
-//     </div>
-//   );
-// }
-
-// export default App;
