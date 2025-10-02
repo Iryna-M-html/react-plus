@@ -1,5 +1,8 @@
 import Alert from "../Alert/Alert";
 import css from "./App.module.css";
+import Button from "../Button/Button";
+import UserMenu from "../UserMenu/UserMenu";
+
 interface KindFriends {
   name: string;
   email: string;
@@ -98,6 +101,8 @@ export default function App() {
     <>
       <h1>Friends</h1>
       <Alert />
+      <Alert type="success" />
+      <Alert type="error" />
       <ul className={css.app}>
         {kindFriends.map((kindFriend, index) => (
           <li style={{ padding: "12px 16px", color: "red" }} key={index}>
@@ -108,6 +113,9 @@ export default function App() {
           </li>
         ))}
       </ul>
+      <Button variant="primary" text="Login" />
+      <Button variant="secondary" text="Follow" />
+      <UserMenu name="Alex" />
     </>
   );
 }

@@ -5,3 +5,10 @@
   border-radius: 4px;
   color: black;
 }
+.success {
+  background-color: green;
+}
+
+.error {
+  background-color: red;
+}
