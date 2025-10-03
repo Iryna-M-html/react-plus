@@ -1,0 +1,70 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", sans-serif;
+}
+
+.fieldset {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.legend {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 0 8px;
+  color: #c84ebe;
+}
+
+.label {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.field {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field:focus {
+  border-color: #c84e91;
+  box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+  outline: none;
+}
+
+.btn {
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}

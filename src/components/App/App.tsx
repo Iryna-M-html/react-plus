@@ -6,6 +6,7 @@ import { useState } from "react";
 import ClickCounter from "../ClickCounter/ClickCounter";
 import ClickCounterall from "../../ClickCounterall";
 import OrderForm from "../../components/OrderForm/OrderForm";
+import FormM3 from "../../components/FormM3/FormM3";
 interface Values {
   x: number;
   y: number;
@@ -104,6 +105,29 @@ const kindFriends: KindFriends[] = [
 console.log(kindFriends);
 
 export default function App() {
+  ///Module3 React
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const form = event.currentTarget;
+
+  //   const formData = new FormData(form);
+  //   const username = formData.get("username");
+  //   console.log("Username:", username);
+
+  //   form.reset();
+  // };
+
+  const handleSubmit = (formData: FormData) => {
+    const username = formData.get("username") as string;
+    console.log("Name:", username);
+  };
+
+  const handleOrder = (data: string) => {
+    console.log("Order received from:", data);
+    // можна зберегти замовлення, викликати API, показати повідомлення тощо
+  };
+  ////////
+
   const [clicksall, setclicksall] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [values, setValues] = useState<Values>({ x: 0, y: 0 });
@@ -182,6 +206,17 @@ export default function App() {
         <button onClick={updateY}>Update y</button>
       </div>
       <OrderForm />
+      {/* module3 React */}
+      {/* <form onSubmit={handleSubmit}>
+        <input type="text" name="username" />
+        <button type="submit">Submit</button>
+      </form> */}
+      <form action={handleSubmit}>
+        <input type="text" name="username" defaultValue="John Doe" />
+        <button type="submit">Submit</button>
+      </form>
+      <p>Place your order</p>
+      <FormM3 onSubmit={handleOrder} />
     </>
   );
 }
